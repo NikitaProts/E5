@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block title %}Car List{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <h1>Каталог автомобилей</h1>
+        </div>
+        <div class="row">
+            <table class="table table-striped">
+                <thead class="thead-dark">
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Производитель</th>
+                    <th scope="col">Модель</th>
+                    <th scope="col">Год выпуска</th>
+                    <th scope="col">Коробка передач</th>
+                    <th scope="col">Цвет</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for car in cars %}
+                    <tr>
+                        <th scope="row">{{ car.id }}</th>
+                        <th>{{ car.manufacturer }}</th>
+                        <th>{{ car.car_model }}</th>
+                        <th>{{ car.production_year }}</th>
+                        <th>{{ car.get_transmission_display }}</th>
+                        <th>{{ car.car_color }}</th>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="container">
+        <hr>
+    </div>
+    <div class="container">
+        <div class="row">
+            <h2>Фильтр поиска</h2>
+        </div>
+        <div class="row">
+            <form action="">
+                <div class="form-group">
+                    <input type="text" name="manufacturer" placeholder="Производитель">
+                </div>
+                <div class="form-group">
+                    <input type="text" name="car_model" placeholder="Модель">
+                </div>
+                <div class="form-group">
+                    <input type="number" name="production_year" placeholder="Год выпуска">
+                </div>
+                <div class="form-group">
+                    <select name="transmission">
+                        <option value="" selected>КПП</option>
+                        <option value="1">Механика</option>
+                        <option value="2">Автомат</option>
+                        <option value="3">Робот</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <input type="text" name="car_color" placeholder="Цвет">
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="btn btn-primary">
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}
